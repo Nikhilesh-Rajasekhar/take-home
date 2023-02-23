@@ -1,0 +1,9 @@
+region                  = "us-west-2"
+db_user_container_image = "dockeruser/dbusercontainer:latest"
+shifts_container_image  = "dockeruser/shiftscontainer:latest"
+db_user_replica_count   = 2
+shifts_replica_count    = 2
+cpu_threshold_percentage= 70
+namespace               = "default"
+db_user_dbname          = "user_db"
+shifts_dbname           = "shifts_db"

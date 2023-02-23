@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shifts-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shifts
+  template:
+    metadata:
+      labels:
+        app: shifts
+    spec:
+      containers:
+      - name: shifts
+        image: example/shifts:latest
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 80
