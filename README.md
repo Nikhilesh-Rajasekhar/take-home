@@ -60,7 +60,7 @@ Now that Terraform is set up, you can use it to deploy Kubernetes resources on A
 
 Replace \<deployment-name\> with the name of each deployment. This command creates an HPA that targets the CPU utilization of the containers in the specified deployment, with a minimum of 1 replica and a maximum of 10 replicas.
 
-1. Verify that the HPA is created by running the following command:
+5. Verify that the HPA is created by running the following command:
 
 | kubectl get hpa |
 | --- |
@@ -77,21 +77,21 @@ Test the autoscaling by generating load on the deployments using a tool like Apa
 | kubectl apply -f deployment-users.yamlkubectl apply -f deployment-shifts.yaml |
 | --- |
 
-1. Verify that the changes were applied correctly by running the following command:
+4. Verify that the changes were applied correctly by running the following command:
 
 | kubectl get deployment |
 | --- |
 
 This should show the updated deployments with the new configuration settings and readiness probes.
 
-1. To test rolling updates, make a change to the Docker image or code for one of the containers, then run the following command:
+5. To test rolling updates, make a change to the Docker image or code for one of the containers, then run the following command:
 
 | kubectl set image deployment/\<DEPLOYMENT\_NAME\> \<CONTAINER\_NAME\>=\<NEW\_IMAGE\_NAME\> |
 | --- |
 
 Replace \<DEPLOYMENT\_NAME\> and \<CONTAINER\_NAME\> with the appropriate values for the container you want to update, and \<NEW\_IMAGE\_NAME\> with the name of the new Docker image you want to use. This will trigger a rolling update for that container, allowing you to test the new configuration settings and readiness probes.
 
-1. To rollback a deployment, run the following command:
+6. To rollback a deployment, run the following command:
 
 | kubectl rollout undo deployment/\<DEPLOYMENT\_NAME\> |
 | --- |
@@ -102,14 +102,14 @@ In this step, we will create a Kubernetes role and role binding to restrict acce
 
 1. Create a file called role.yaml. This file creates a Role object that grants read-only access to pods and their logs.
 
-1. Apply the role to the cluster using the following command:
+2. Apply the role to the cluster using the following command:
 
 | kubectl apply -f role.yaml |
 | --- |
 
-1. Create a file called role-binding.yaml. Replace \<YOUR\_DEV\_TEAM\_USERNAME\> with the username of your development team member. This file creates a RoleBinding object that binds the limited-access Role to your development team member's user account.
+3. Create a file called role-binding.yaml. Replace \<YOUR\_DEV\_TEAM\_USERNAME\> with the username of your development team member. This file creates a RoleBinding object that binds the limited-access Role to your development team member's user account.
 
-1. Apply the role binding to the cluster using the following command. This will ensure that your development team member has restricted access to the Kubernetes resources.
+4. Apply the role binding to the cluster using the following command. This will ensure that your development team member has restricted access to the Kubernetes resources.
 
 | kubectl apply -f role-binding.yaml |
 | --- |
@@ -132,7 +132,7 @@ Or
 | environment = "production" |
 | --- |
 
-1. Run terraform apply to deploy the resources to the selected environment.
+4. Run terraform apply to deploy the resources to the selected environment.
 
 - **Auto-scale Based on Network Latency**
 
@@ -145,7 +145,7 @@ In this step, we will modify the Horizontal Pod Autoscaler to scale based on net
 
 This sets the HPA to scale based on network traffic utilization, with a target average value of 500 milliunits.
 
-1. Apply the changes to the cluster using the following command:
+2. Apply the changes to the cluster using the following command:
 
 | kubectl apply -f hpa.yaml |
 | --- |
