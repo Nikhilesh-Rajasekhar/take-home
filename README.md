@@ -55,16 +55,14 @@ Now that Terraform is set up, you can use it to deploy Kubernetes resources on A
 3. Add the resource requests and limits for CPU in the deployment yaml file for each of the two containers.
 4. Create an HPA resource for each deployment by running the following command:
 
-| kubectl autoscale deployment \<deployment-name\> --cpu-percent=70 --min=1 --max=10
- |
+| kubectl autoscale deployment \<deployment-name\> --cpu-percent=70 --min=1 --max=10 |
 | --- |
 
 Replace \<deployment-name\> with the name of each deployment. This command creates an HPA that targets the CPU utilization of the containers in the specified deployment, with a minimum of 1 replica and a maximum of 10 replicas.
 
 1. Verify that the HPA is created by running the following command:
 
-| kubectl get hpa
- |
+| kubectl get hpa |
 | --- |
 
 Test the autoscaling by generating load on the deployments using a tool like Apache JMeter or hey. You should see the number of replicas increase as the CPU utilization reaches 70%.
@@ -125,9 +123,9 @@ In this step, we will create separate Kubernetes configuration files for staging
 1. Create a new directory called staging and production in the root directory of your project.
 2. Copy the deployment.yaml, service.yaml, hpa.yaml, role.yaml, and role-binding.yaml files into each of the respective environment directories.
 3. Update the values in the terraform.tfvars file to specify the environment you want to deploy to:
-'''
-environment = "staging"
-'''
+
+| environment = "staging" |
+| --- |
 
 Or
 
