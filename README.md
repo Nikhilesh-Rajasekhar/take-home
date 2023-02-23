@@ -1,7 +1,7 @@
 # Deploying Two Independent Containers on AWS EKS with Horizontal Pod Autoscaling
 This project demonstrates how to deploy two independent containers on AWS Elastic Kubernetes Service (EKS) with horizontal pod autoscaling.
 
-##Prerequisites
+**Prerequisites**
 
 Before you begin, you need the following:
 
@@ -13,7 +13,7 @@ Before you begin, you need the following:
   - kubectl
   - aws-iam-authenticator
 
-######Step 1: Create an IAM user and access keys
+**Step 1: Create an IAM user and access keys**
 
 To deploy resources on AWS using Terraform, you need an IAM user with the appropriate permissions. Follow these steps to create an IAM user and access keys:
 
@@ -27,7 +27,7 @@ To deploy resources on AWS using Terraform, you need an IAM user with the approp
 8. Review your settings, and then click on Create user to create the user.
 9. After the user is created, click on Download .csv to download the access keys for the user.
 
-######Step 2: Set up Terraform**
+**Step 2: Set up Terraform**
 
 Now that you have an IAM user with the appropriate permissions, you can set up Terraform on your local machine. Follow these steps to set up Terraform:
 
@@ -36,7 +36,7 @@ Now that you have an IAM user with the appropriate permissions, you can set up T
 3. Create a new file named variable.tf in your project directory, and copy the contents of the variable.tf file provided in this repository.
 4. Create a new file named terraform.tfvars in your project directory, and copy the contents of the terraform.tfvars file provided in this repository. Update the values as needed for your environment.
 
-######Step 3: Deploy Kubernetes resources
+**Step 3: Deploy Kubernetes resources**
 
 Now that Terraform is set up, you can use it to deploy Kubernetes resources on AWS. Follow these steps to deploy the resources:
 
@@ -48,7 +48,7 @@ Now that Terraform is set up, you can use it to deploy Kubernetes resources on A
 6. Run kubectl get services to get the URL of the load balancer.
 7. Open a web browser and navigate to the load balancer URL to verify that the APIs are working.
 
-######Step 4: Horizontal Pod Autoscaler (HPA): Automatically Scale the Deployments
+**Step 4: Horizontal Pod Autoscaler (HPA): Automatically Scale the Deployments**
 
 1. Install the Kubernetes Metrics Server.
 2. Verify that the Metrics Server is up and running by checking the deployment status.
@@ -69,7 +69,7 @@ Replace \<deployment-name\> with the name of each deployment. This command creat
 
 Test the autoscaling by generating load on the deployments using a tool like Apache JMeter or hey. You should see the number of replicas increase as the CPU utilization reaches 70%.
 
-######Step 5: Ensure Rolling Deployments and Rollbacks
+**Step 5: Ensure Rolling Deployments and Rollbacks**
 
 1. Open the deployment YAML file for each container, which should be named "deployment-users.yaml" and "deployment-shifts.yaml". Edit it to ensure that only one new pod is created at a time during a rolling update, and that no more than one pod is unavailable at any given time.
 2. Add a readiness probe for each container to ensure that new pods are ready before old ones are terminated during a rolling update. Edit it to ensure that the container is considered "ready" only after the "/health" endpoint returns a successful response.
@@ -98,7 +98,7 @@ Replace \<DEPLOYMENT\_NAME\> and \<CONTAINER\_NAME\> with the appropriate values
 | kubectl rollout undo deployment/\<DEPLOYMENT\_NAME\> |
 | --- |
 
-######Step 6: Implement Role-Based Access Control (RBAC)
+**Step 6: Implement Role-Based Access Control (RBAC)**
 
 In this step, we will create a Kubernetes role and role binding to restrict access to certain commands for our development team.
 
@@ -116,7 +116,7 @@ In this step, we will create a Kubernetes role and role binding to restrict acce
 | kubectl apply -f role-binding.yaml |
 | --- |
 
-##Bonus:
+**Bonus:**
 
 - **Apply Configurations to Multiple Environments**
 
@@ -125,9 +125,9 @@ In this step, we will create separate Kubernetes configuration files for staging
 1. Create a new directory called staging and production in the root directory of your project.
 2. Copy the deployment.yaml, service.yaml, hpa.yaml, role.yaml, and role-binding.yaml files into each of the respective environment directories.
 3. Update the values in the terraform.tfvars file to specify the environment you want to deploy to:
-
-| environment = "staging" |
-| --- |
+'''
+environment = "staging"
+'''
 
 Or
 
